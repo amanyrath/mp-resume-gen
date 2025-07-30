@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: 'Helvetica', sans-serif; margin: 2em; }
+    h1 { color: #004d40; }
+    .section { margin-top: 2em; }
+    .area-list, .route-list { padding-left: 1em; }
+    .route { margin-bottom: 0.5em; }
+    .label { font-weight: bold; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>{{ name }}</h1>
+  <p><strong>Email:</strong> {{ email }}</p>
+  <p>{{ bio }}</p>
+
+  <div class="section">
+    <h2>📊 Climbing Summary</h2>
+    <p><span class="label">Total Routes:</span> {{ total_routes }}</p>
+    <p><strong>Max Grades:</strong>
+      Boulder: {{ max_grade_boulder }} (Flash: {{ max_flash_boulder }}),
+      Lead: {{ max_grade_lead }} (Flash: {{ max_flash_lead }}, Onsight: {{ max_onsight_lead }})
+    </p>
+    
+  </div>
+
+  <div class="section">
+    <h2>📍 Favorite Areas</h2>
+    <ul class="area-list">
+      {% for area, count in areas %}
+        <li>{{ area }} ({{ count }} routes)</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="section">
+    <h2>❤️ Favorite Climbs</h2>
+    <ul class="route-list">
+      {% for climb in favorites %}
+        <li class="route">
+          <strong>{{ climb['Route'] }}</strong> ({{ climb['Rating'] }})<br>
+          <span class="label">Location:</span> {{ climb['Location'] }}<br>
+          <span class="label">Date:</span> {{ climb['Date'] }}
+        </li>
+      {% endfor %}
+    </ul>
+<div class="section">
+  <h2>💥 Hardest Boulders</h2>
+  <ul class="route-list">
+    {% for route in hardest_boulders %}
+      <li class="route">
+        <strong>{{ route['Route'] }}</strong> ({{ route['Rating'] }})<br>
+        <span class="label">Location:</span> {{ route['Location'] }}<br>
+        <span class="label">Date:</span> {{ route['Date'] }}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="section">
+  <h2>🧗‍♀️ Hardest Leads</h2>
+  <ul class="route-list">
+    {% for route in hardest_leads %}
+      <li class="route">
+        <strong>{{ route['Route'] }}</strong> ({{ route['Rating'] }})<br>
+        <span class="label">Location:</span> {{ route['Location'] }}<br>
+        <span class="label">Date:</span> {{ route['Date'] }}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+  </div>
+  <div class="section">
+    <h2>⛰️ Longest Climbs</h2>
+    <ul class="route-list">
+      {% for climb in longest_climbs %}
+        <li class="route">
+          <strong>{{ climb['Route'] }}</strong> ({{ climb['Rating'] }})<br>
+          <span class="label">Location:</span> {{ climb['Location'] }}<br>
+          <span class="label">Length:</span> {{ climb['Length'] }} ft<br>
+          <span class="label">Date:</span> {{ climb['Date'] }}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Area Rollups</title>
+  <script>
+    const locPartsMap = {
+      {% for leaf, full_locations in leaf_to_full.items() %}
+        {% for loc in full_locations %}
+          "{{ loc }}": {{ loc.split(' > ') | tojson }},
+        {% endfor %}
+      {% endfor %}
+    };
+
+    function updatePreview(selectElem, loc) {
+      const level = parseInt(selectElem.value);
+      const parts = locPartsMap[loc];
+      const areaName = parts.slice(0, level + 1).join(' > ');
+      document.getElementById('preview-' + btoa(loc)).textContent = '→ Rolled up as: ' + areaName;
+    }
+  </script>
+</head>
+<body>
+  <h2>Top 5 Locations</h2>
+  <p>Select how you'd like each area to be grouped in your resume.</p>
+
+  <form action="/generate" method="POST">
+    {% for leaf, full_locations in leaf_to_full.items() %}
+      <div style="margin-bottom: 30px;">
+        <strong>{{ leaf }}</strong>
+        <ul>
+          {% for loc in full_locations %}
+            <li>
+              <p>{{ loc }}</p>
+              <label>Roll up to:</label>
+              <select name="rollup_map[{{ loc }}]" onchange="updatePreview(this, '{{ loc }}')">
+                {% set parts = loc.split(' > ') %}
+                {% for part in parts %}
+                  <option value="{{ loop.index0 }}">{{ part }}</option>
+                {% endfor %}
+              </select>
+              <p id="preview-{{ loc|b64encode }}">→ Rolled up as: {{ loc }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+    <input type="submit" value="Generate Resume">
+  </form>
+</body>
+</html>

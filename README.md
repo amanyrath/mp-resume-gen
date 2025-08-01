@@ -1,4 +1,5 @@
-🧗 MP Ticks Analysis
+## 🧗 MP Ticks Analysis
+
 Analyze your personal climbing progression using Mountain Project (MP) tick data.
 
 Overview

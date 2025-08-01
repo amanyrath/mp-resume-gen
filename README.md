@@ -2,7 +2,7 @@
 
 Analyze your personal climbing progression using Mountain Project (MP) tick data.
 
-Overview
+### Overview
 This project parses your exported MP ticklist CSV and produces visualizations and statistics that show trends in your climbing over time. It includes:
 
 Grade progression analysis
@@ -15,7 +15,7 @@ Style breakdown (e.g., Lead, TR, Flash, Onsight)
 
 Optionally, a resume-style summary of your climbing experience
 
-📁 Project Structure
+### 📁 Project Structure
 ```bash
 Copy
 Edit
@@ -39,7 +39,7 @@ mp-ticks-analysis/
 ├── requirements.txt
 └── README.md
 ```
-🧰 Getting Started
+### 🧰 Getting Started
 1. Export Your Ticks
 Go to Mountain Project → Your Profile → Ticks → "Export to CSV"
 
@@ -53,19 +53,23 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
-3. Run the Analysis
+### 3. Run the Analysis
 Open the Jupyter notebook:
 
-bash
+```bash
 Copy
 Edit
 jupyter notebook notebooks/analysis.ipynb
+```
+
 Or run the script:
 
-bash
+```bash
 Copy
 Edit
 python -m analysis.main
+```
+
 📊 Features
 Rolling Grade Progression
 Visualize your hardest grades over time using a rolling average.
@@ -98,7 +102,7 @@ Edit
 pip install -r requirements.txt
 ```
 
-📝 Future Work
+### 📝 Future Work
 Climbing discipline breakdown (bouldering, sport, trad)
 
 Grade distribution histogram
@@ -107,6 +111,6 @@ Geo heatmaps of climb locations
 
 Exporting climbing resume as PDF
 
-📬 Contact
+### 📬 Contact
 Created by Alexis Manyrath — feel free to reach out if you want help analyzing your own ticklist!
 
